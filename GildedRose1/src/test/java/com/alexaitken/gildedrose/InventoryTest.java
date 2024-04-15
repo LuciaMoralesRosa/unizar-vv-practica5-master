@@ -86,16 +86,12 @@ public class InventoryTest {
         assertEquals(21, backStagePass.getQuality());
     }
 
-    @Test // P4b, P5c, P6d
+    @Test // P4b
     public void should_not_increase_backstage_passes_above_a_quality_of_50() {
         Item backStagePassMoreThan10DaysAway = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 50);
-        Item backStagePass10DaysAway = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49);
-        Item backStagePass5DaysAway = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48);
-        Inventory inventory = createInventory(backStagePassMoreThan10DaysAway, backStagePass10DaysAway, backStagePass5DaysAway);
+        Inventory inventory = createInventory(backStagePassMoreThan10DaysAway);
         inventory.updateQuality();
         assertEquals(50, backStagePassMoreThan10DaysAway.getQuality());
-        assertEquals(50, backStagePass10DaysAway.getQuality());
-        assertEquals(50, backStagePass5DaysAway.getQuality());
     }
 
     @Test // P5
@@ -112,6 +108,14 @@ public class InventoryTest {
         Inventory inventory = createInventory(backStagePass);
         inventory.updateQuality();
         assertEquals(50, backStagePass.getQuality());
+    }
+
+    @Test // P5c
+    public void p5c() {
+        Item backStagePass10DaysAway = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49);
+        Inventory inventory = createInventory(backStagePass10DaysAway);
+        inventory.updateQuality();
+        assertEquals(50, backStagePass10DaysAway.getQuality());
     }
 
     @Test // P5d
@@ -160,6 +164,14 @@ public class InventoryTest {
         Inventory inventory = createInventory(backStagePass);
         inventory.updateQuality();
         assertEquals(50, backStagePass.getQuality());
+    }
+
+    @Test // P6d
+    public void p6d() {
+        Item backStagePass5DaysAway = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48);
+        Inventory inventory = createInventory(backStagePass5DaysAway);
+        inventory.updateQuality();
+        assertEquals(50, backStagePass5DaysAway.getQuality());
     }
 
     @Test // P6e
